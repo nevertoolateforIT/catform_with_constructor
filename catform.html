@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input:required:valid {border-color:green;}
+    </style>
+</head>
+
+    <form>
+    <div>
+        <H1><b>Страница-опросник для обладателей котиков </b></H1>
+        <p> Введите кличку котика: </p> <br />
+            Моего кота/кошку зовут: <input type="text" id = "catname" name="catname" required/>*<br />
+     </div>
+        
+    <div>
+        <fieldset>
+        <legend>Имя и контакты владельца</legend>
+        <p>Имя <input type="text" name="firstName" id ="firstname" required/></p>
+        <p>Фамилия <input type="text" id="lastName" required /></p>
+        </fieldset>
+        <fieldset>
+        <legend>Адрес</legend>
+        <p>Адрес <textarea id="address" rows="1" cols="50"required></textarea></p>
+        <p>Индекс <input type="number" id="zipcode" pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/" required/></p>
+        <p>Email <input type ="email" id = "email"required/></p>
+        <p>Телефон <input type ="tel" pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"/></p>
+        </fieldset>
+    </div>
+
+    <div> 
+        <p>Порода питомца</p>
+    
+        <select id = "breed" >
+            <option value=" Пиксибоб">Пиксибоб</option>
+            <option value="Египетская мау">Египетская мау</option>
+            <option value="Персидская">Персидская</option>
+            <option value="Нет в списке"> Нет в списке</option>
+         </select>          
+    </div> 
+
+    <div >
+        <p> Какой корм ест ваш питомец? </p>
+        <form id = food> 
+            <input type="checkbox" class ="foodbox" name="food" value="dryfood" id = "dryfood" />
+            Сухой корм<br />
+            <input type="checkbox"class ="foodbox" name="food" value="wetfood"  id= "wetfood" /> 
+            Влажный корм <br />
+            <input type="checkbox" class ="foodbox"name="food" value="organicfood" id="organicfood"/>
+            Натуральный корм <br />
+        </form>
+            
+        </div>
+     
+        
+    </div>    
+        
+    <div> 
+        <p> Укажите пол питомца: </p>
+        <input type="radio" class="sex" name="sex" value="male" id="male" /> Самец<br />
+        <input type="radio" class="sex" name="sex" value="female" id="female"/> Самка
+    </div>   
+
+    <div> 
+        <p>Оставьте здесь ваш комментарий:</p>
+
+        <textarea rows="7" cols="60"></textarea>
+    </div>
+
+    <div>
+    <label for="picture">Прикрепите фото питомца:</label>
+    </div>
+
+   <div>
+        <input type="file"
+         id="picture" name="picture"
+         accept="image/png, image/jpeg">
+    </div>
+ 
+<p>Нажмите:<button id ="btn" onclick="createcat();">СОХРАНИТЬ</button></p>
+</form>
+
+</body>
+</html>
+<script>
+function createcat (){
+    var catname = document.getElementById('catname').value;
+    var breed = document.getElementById('breed').value;
+    var food = document.querySelector ('.foodbox:checked').value;
+    var sex = document.querySelector ('.sex:checked').value
+   
+    var NewCat= new Cat (catname, breed, food, sex);
+        console.log(NewCat);
+}
+    
+    class Cat{
+        constructor(catname, breed, food, sex){
+            this.catname= catname;
+            this.breed =breed;
+            this.food = food;
+            this.sex = sex;            
+        }       
+    }
+   
+</script>
